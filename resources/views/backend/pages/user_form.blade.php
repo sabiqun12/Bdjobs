@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="{{ asset('assets/backend') }}/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="{{ asset('assets/backend') }}/css/jquery.steps.css">
     <!-- for table -->
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style type="text/css">
         #installationForm .tab-content {
@@ -27,7 +28,7 @@
 
 @section('content')
     <div class="container">
-        <form id="contact" action="{{ route('user.store')}}" method="POST">
+        <form id="contact" action="{{ route('user.store') }}" method="POST">
             @csrf
             <div>
                 <h3>Personal Information</h3>
@@ -53,7 +54,8 @@
                 <section>
 
                     <div class="mt-2">
-                        <a class="btn btn-primary btn-sm pull-right" id="insertRow" href="#"><i class="fa fa-plus"></i></a>
+                        <a class="btn btn-primary btn-sm pull-right" id="insertRow" href="#"><i
+                                class="fa fa-plus"></i></a>
 
                         <table class="table">
                             <thead>
@@ -107,9 +109,9 @@
                     </div>
                     <input id="acceptTerms" name="acceptTerms" type="checkbox" class="required"> <label for="acceptTerms">I
                         agree with the Terms and Conditions.</label>
-                        <div class="form-group d-flex justify-content-center">
-                            <button class="btn btn-success text-center" type="submit">Save</button>
-                        </div>
+                    <div class="form-group d-flex justify-content-center">
+                        <button class="btn btn-success text-center" type="submit">Save</button>
+                    </div>
 
 
                 </section>
@@ -196,54 +198,56 @@
         });
 
         // add row js
-        $(function () {
+        $(function() {
 
-// Start counting from the third row
-var counter = 1;
+            // Start counting from the third row
+            var counter = 1;
 
-$("#insertRow").on("click", function (event) {
-    event.preventDefault();
+            $("#insertRow").on("click", function(event) {
+                event.preventDefault();
 
-    var newRow = $("<tr>");
-    var cols = '';
+                var newRow = $("<tr>");
+                var cols = '';
 
-    // Table columns
-    cols += '<th scrope="row">' + counter + '</th>';
-    cols += '<td><input class="form-control rounded-0" type="text" id="qualification" name="qualification" placeholder="Qualification name" required></td>';
-    cols += '<td><input class="form-control rounded-0" type="text" id="institute" name="institute" placeholder="institute name" required></td>';
-    cols += '<td><input class="form-control rounded-0" type="text" id="subject" name="subject" placeholder="Subject" required></td>';
-    cols += '<td><input class="form-control rounded-0" type="text" id="pyear" name="pyear" placeholder="Year" required></td>';
-    cols += '<td><button class="btn btn-danger rounded-0" id ="deleteRow"><i class="fa fa-trash"></i></button</td>';
-    cols += '<td><button class="btn btn-info rounded-0" id ="editRow"><i class="fa fa-pencil"></i></button</td>';
-
-
-    // Insert the columns inside a row
-    newRow.append(cols);
-
-    // Insert the row inside a table
-    $("table").append(newRow);
-
-    // Increase counter after each row insertion
-    counter++;
-});
-
-// Remove row when delete btn is clicked
-$("table").on("click", "#deleteRow", function (event) {
-    $(this).closest("tr").remove();
-    counter -= 1
-});
-
-$("table").on("click", "#editRow", function (event) {
-    $(this).closest("tr").remove();
-    counter -= 1
-});
+                // Table columns
+                cols += '<th scrope="row">' + counter + '</th>';
+                cols +=
+                    '<td><input class="form-control rounded-0" type="text" id="qualification" name="qualification" placeholder="Qualification name" required></td>';
+                cols +=
+                    '<td><input class="form-control rounded-0" type="text" id="institute" name="institute" placeholder="institute name" required></td>';
+                cols +=
+                    '<td><input class="form-control rounded-0" type="text" id="subject" name="subject" placeholder="Subject" required></td>';
+                cols +=
+                    '<td><input class="form-control rounded-0" type="text" id="pyear" name="pyear" placeholder="Year" required></td>';
+                cols +=
+                    '<td><button class="btn btn-danger rounded-0" id ="deleteRow"><i class="fa fa-trash"></i></button</td>';
+                cols +=
+                    '<td><button class="btn btn-info rounded-0" id ="editRow"><i class="fa fa-pencil"></i></button</td>';
 
 
+                // Insert the columns inside a row
+                newRow.append(cols);
 
-});
+                // Insert the row inside a table
+                $("table").append(newRow);
+
+                // Increase counter after each row insertion
+                counter++;
+            });
+
+            // Remove row when delete btn is clicked
+            $("table").on("click", "#deleteRow", function(event) {
+                $(this).closest("tr").remove();
+                counter -= 1
+            });
+
+            $("table").on("click", "#editRow", function(event) {
+                $(this).closest("tr").remove();
+                counter -= 1
+            });
 
 
 
-
+        });
     </script>
 @endsection

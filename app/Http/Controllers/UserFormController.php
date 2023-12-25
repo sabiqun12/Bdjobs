@@ -19,8 +19,12 @@ class UserFormController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function UserData()
     {
+
+        $userdata = UserForm::all();
+        // $user = UserForm::latest('id')->select(['id', 'name', 'email', 'phone', 'address'])->paginate();
+        return view('backend.pages.index', compact('userdata'));
 
     }
 
@@ -43,39 +47,37 @@ class UserFormController extends Controller
             'c_name'=> $request->c_name,
             'c_institute'=> $request->c_in
 
-
-
-
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function UserEdit()
     {
-        //
+        // $user = UserForm::find($id);
+        // return view('backend.pages.user_form_edit', compact('user'));
+        return view('backend.pages.user_form_edit');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    public function Formpage(){
+        return view('backend.pages.createform');
+    }
+    public function page(){
+        return view('backend.layouts.master1');
+    }
+
+
+
     public function update(Request $request, string $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(string $id)
     {
         //
