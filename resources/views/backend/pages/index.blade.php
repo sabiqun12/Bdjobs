@@ -43,9 +43,15 @@
                             <td>{{ $data->address }}</td>
                             <td>{{ $data->phone }}</td>
 
-                            <td class="d-flex justify-content-center">
-                                <a class="btn btn-info btn-sm center" href="{{ route('user.edit', $data->id)}}"><i class="fa fa-edit"></i></a>
+                            <td class="d-flex justify-content-start">
+                                <div class="container">
+                                <a class="btn btn-info btn-sm center" href="{{ route('user.edit', $data->id) }}"><i class="fa fa-edit"></i></a>
+                                </div>
+                                <div class="container">
+                                <a class="btn btn-danger btn-sm center " href="{{ route('user.view', $data->id) }}"><i class="fa fa-eye"></i></a>
                             </td>
+                                 </div>
+                               
                         </tr>
                     @endforeach
                 </tbody>

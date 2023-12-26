@@ -41,6 +41,12 @@ class PersonalFormController extends Controller
         $personaldata = PersonalForm::find($id);
         return view('backend.pages.edit_form', compact('personaldata'));
     } 
+
+    public function FormView($id){
+        $personaldata = PersonalForm::find($id);
+        return view('backend.pages.data_view', compact('personaldata'));
+
+    }
     
     public function FormUpdate(Request $request, $id){
 

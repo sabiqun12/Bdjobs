@@ -43,6 +43,7 @@ Route::post('/form', [PersonalFormController::class, 'PersonalDataStore'])->name
 Route::get('/formdata', [PersonalFormController::class, 'index'])->name('user.data');
 Route::get('/edit/{id}', [PersonalFormController::class, 'FormEdit'])->name('user.edit');
 Route::put('/update/{id}', [PersonalFormController::class, 'FormUpdate'])->name('user.update');
+Route::get('/view/{id}', [PersonalFormController::class, 'FormView'])->name('user.view');
 
 
 
