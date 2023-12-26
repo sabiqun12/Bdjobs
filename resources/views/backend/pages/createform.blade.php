@@ -235,17 +235,17 @@
                 // Table columns
                 cols += '<th scrope="row">' + counter + '</th>';
                 cols +=
-                    '<td><input class="form-control rounded-0" type="text" id="elevel" name="elevel" name" required></td>';
+                    '<td><input class="form-control rounded-0" type="text" id="elevel" name="elevel[]" name" required></td>';
                 cols +=
-                    '<td><input class="form-control rounded-0" type="text" id="igroup" name="group"  name" required></td>';
+                    '<td><input class="form-control rounded-0" type="text" id="igroup" name="group[]"  name" required></td>';
                 cols +=
-                    '<td><input class="form-control rounded-0" type="text" id="board" name="board" v  required></td>';
+                    '<td><input class="form-control rounded-0" type="text" id="board" name="board[]"   required></td>';
                 cols +=
-                    '<td><input class="form-control rounded-0" type="text" id="iname" name="iname"  required></td>';
+                    '<td><input class="form-control rounded-0" type="text" id="iname" name="iname[]"  required></td>';
                 cols +=
-                    '<td><input class="form-control rounded-0" type="text" id="result" name="result"  required></td>';
+                    '<td><input class="form-control rounded-0" type="text" id="result" name="result[]"  required></td>';
                 cols +=
-                    '<td><input class="form-control rounded-0" type="text" id="pyear" name="pyear"  required></td>';
+                    '<td><input class="form-control rounded-0" type="text" id="pyear" name="pyear[]"  required></td>';
 
                 cols +=
                     '<td><button class="btn btn-danger rounded-0" id ="deleteRow"><i class="fa fa-trash"></i></button</td>';
