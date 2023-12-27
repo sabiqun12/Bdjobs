@@ -34,14 +34,14 @@ class PersonalFormController extends Controller
             'topic'=> $request->t_cover,
             't_year'=>$request->t_year,
             'institute'=> $request->t_institute,
-            'duration'=> $request->duration,
+            'duration'=> $request->duration
         ]);
         // dd($personaldata->id); 
-        // dd($request->all());
+        //  dd($request->elevel);
         foreach($request->elevel as $key=> $value)
         {
             // dd($request->pyear[$key]);
-            $personaldata = Education::create([
+             Education::create([
                 'Personal_ID' => $personaldata->id, 
                 'Education'=> $request->elevel[$key],
                 'Group'=> $request->group[$key],
@@ -54,7 +54,11 @@ class PersonalFormController extends Controller
 
               
             ]);
+
+            return redirect()->route('user.data');
+            // echo 123;
         }
+        // dd(991923);
         
 
     }
@@ -63,11 +67,23 @@ class PersonalFormController extends Controller
 
         $personaldata = PersonalForm::find($id);
         return view('backend.pages.edit_form', compact('personaldata'));
+
+       
+
     } 
 
     public function FormView($id){
+        // dd(123);
         $personaldata = PersonalForm::find($id);
-        return view('backend.pages.data_view', compact('personaldata'));
+        $educationdata = Education::where('Personal_ID', $id)->get();
+
+        //  dd($educationdata, $personaldata);
+        return view('backend.pages.data_view', compact('personaldata', 'educationdata'));
+
+      
+        
+        // return view('backend.pages.data_view', compact('personaldata'));
+
 
     }
     

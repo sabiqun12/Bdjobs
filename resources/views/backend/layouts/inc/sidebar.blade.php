@@ -52,9 +52,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link active">
+                <a href="{{ route('user.data') }}" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Edit</p>
+                  <p>DataList</p>
                 </a>
               </li>
             </ul>

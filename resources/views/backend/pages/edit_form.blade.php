@@ -59,16 +59,16 @@
                             <label for="gender">Gender</label>
                             <select class="form-control js-select" name="gender"  value="{{ $personaldata->gender}}" required>
                                 <option value="0">Select</option>
-                                <option value="2">Male</option>
-                                <option value="1">Female</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="Religion">Religion</label>
                             <select class="form-control js-select" name="religion"  value="{{ $personaldata->religion}}" required>
-                                <option value="1">Islam</option>
-                                <option value="2">Hindu</option>
-                                <option value="3">Christan</option>
+                                <option value="Islam">Islam</option>
+                                <option value="Hindu">Hindu</option>
+                                <option value="Christan">Christan</option>
                             </select>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="phone">Phone</label>
-                            <input type="tel" class="form-control" id="mobile_code" name="phone"  value="{{ $personaldata->name}}" required>
+                            <input type="tel" class="form-control" id="mobile_code" name="phone"  value="{{ $personaldata->phone}}" required>
                         </div>
                     </div>
 
