@@ -58,7 +58,6 @@
                         <div class="form-group col-md-6">
                             <label for="gender">Gender</label>
                             <select class="form-control js-select" name="gender"  value="{{ $personaldata->gender}}" required>
-                                <option value="0">Select</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
@@ -66,8 +65,8 @@
                         <div class="form-group col-md-6">
                             <label for="Religion">Religion</label>
                             <select class="form-control js-select" name="religion"  value="{{ $personaldata->religion}}" required>
-                                <option value="Islam">Islam</option>
                                 <option value="Hindu">Hindu</option>
+                                <option value="Islam">Islam</option>
                                 <option value="Christan">Christan</option>
                             </select>
                         </div>
@@ -107,6 +106,11 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td><input class="form-control rounded-0" type="text" id="elevel" name="elevel[]"  required></td>
+                                    <td><input class="form-control rounded-0" type="text" id="igroup" name="group"   required></td>
+                                    <td><input class="form-control rounded-0" type="text" id="board" name="board"   required></td>
+                                    <td><input class="form-control rounded-0" type="text" id="iname" name="iname"  required></td>
+                                    <td><input class="form-control rounded-0" type="text" id="iname" name="iname"  required></td>
 
                                 </tr>
                             </tbody>
@@ -240,7 +244,7 @@
                 cols +=
                     '<td><input class="form-control rounded-0" type="text" id="igroup" name="group"  name" required></td>';
                 cols +=
-                    '<td><input class="form-control rounded-0" type="text" id="board" name="board" v  required></td>';
+                    '<td><input class="form-control rounded-0" type="text" id="board" name="board"  required></td>';
                 cols +=
                     '<td><input class="form-control rounded-0" type="text" id="iname" name="iname"  required></td>';
                 cols +=

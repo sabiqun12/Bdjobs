@@ -14,14 +14,92 @@
 @endsection
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
+          <div class="row d-flex justify-content-start">
+                <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-header">
+                      <h3 class="text-center bg-success">Personal Information </h3>
+                    </div>
+                    <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="">
+                          <label for="name" class="col-md-4">First Name</label><span class="col-md-1">:</span>
+                          <td>{{ $personaldata->first_name }}</td>
+                        </div>
+                        <div class="">
+                          <label for="name" class="col-md-4">Gender</label><span class="col-md-1">:</span>
+                          <td>{{ $personaldata->gender }}</td>
+  
+                        </div>
+                        <div class="">
+                          <label for="name" class="col-md-4">Phone</label><span class="col-md-1">:</span>
+                           <td>{{ $personaldata->phone }}</td>
+  
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="">
+                          <label for="name" class="col-md-4"> Last Name</label><span class="col-md-1">:</span>
+                          <td>{{ $personaldata->last_name }}</td>
+                        </div>
+                        <div class="">
+                          <label for="name" class="col-md-4">Religion</label><span class="col-md-1">:</span>
+                          <td>{{ $personaldata->religion }}</td>
+                      </div>
+                      <div class="">
+                        <label for="name" class="col-md-4">Address</label><span class="col-md-1">:</span>
+                        <td>{{ $personaldata->address }}</td>
+                    </div>
+                    </div>
+          </div>
+          </div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- <div class="container">
+<div class="row d-flex justify-content-start">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="text-center bg-info font-weight-bold text-dark">Personal Information </h3>
+          </div>
+          <div class="card-body">
+          <table class="table table-light table-striped ">
+  <thead>
+    <tr>      
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Gender</th>
+      <th scope="col">Religion</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Address</th>   
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ $personaldata->first_name  }}</td>
+      <td>{{ $personaldata->last_name }}</td>
+      <td>{{ $personaldata->gender }}</td>
+      <td>{{ $personaldata->religion }}</td>
+      <td>{{ $personaldata->phone }}</td> 
+      <td>{{ $personaldata->address }}</td>
+    </tr>
+</tbody>
+</table>
+</div>
+</div>
+</div> -->
+ <!-- <div class="container">
     <div class="row d-flex justify-content-center">
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">View Data Table</h3>
+            <h3 class="text-warning">Personal Information</h3>
           </div>
-          <!-- /.card-header -->
           <div class="card-body">
             <table class="table table-bordered">
               <thead>
@@ -46,24 +124,24 @@
               </tbody>
             </table>
           </div>
-          <!-- /.card-body -->
+        
         </div>
 </div>
 </div>
-</div>
+</div>  -->
 <div class="container">
     <div class="row d-flex justify-content-start">
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Education </h3>
+            <h3 class="text-center bg-success">Education </h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
             <table class="table table-bordered">
               <thead>
                 <tr>                         
-                  <th>ID</th>
+                  <!-- <th>ID</th> -->
                   <th>Education Level</th>
                   <th>Group</th>
                   <th>Institute</th>
@@ -75,7 +153,7 @@
               <tbody>
               @foreach($educationdata as $data)
                 <tr>
-                  <td>{{ $data->id }}</td>
+                  <!-- <td>{{ $data->id }}</td> -->
                   <td>{{ $data->Education }} </td>
                   <td>{{ $data->Group }}</td> 
                   <td>{{ $data->I_Name }}</td> 
@@ -93,14 +171,14 @@
 </div>
 </div>
 
-<div class="container">
+<!-- <div class="container">
     <div class="row d-flex justify-content-start">
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Certification </h3>
+            <h3 class="text-center bg-warning">Certification </h3>
           </div>
-          <!-- /.card-header -->
+         
           <div class="card-body">
             <table class="table table-bordered">
               <thead>
@@ -127,9 +205,54 @@
               </tbody>
             </table>
           </div>
-          <!-- /.card-body -->
+       
         </div>
         </div>
+</div>
+</div> -->
+<div class="container-fluid">
+          <div class="row d-flex justify-content-start">
+                <div class="col-md-12">
+                  <div class="card">
+                    <div class="card-header">
+                      <h3 class="text-center bg-success">Certification</h3>
+                    </div>
+                    <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="">
+                          <label for="name" class="col-md-4">Training Title</label><span class="col-md-1">:</span>
+                          <td>{{ $personaldata->T_title }}</td>
+                        </div>
+                        <div class="">
+                          <label for="name" class="col-md-4">Topics</label><span class="col-md-1">:</span>
+                          <td>{{$personaldata->topic }}</td>
+  
+                        </div>
+                        <div class="">
+                          <label for="name" class="col-md-4">Country</label><span class="col-md-1">:</span>
+                           <td>{{ $personaldata->country }}</td>
+  
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="">
+                          <label for="name" class="col-md-4"> Institute</label><span class="col-md-1">:</span>
+                          <td>{{ $personaldata->institute }}</td>
+                        </div>
+                        <div class="">
+                          <label for="name" class="col-md-4">Training Year</label><span class="col-md-1">:</span>
+                          <td>{{ $personaldata->t_year  }}</td>
+                      </div>
+                      <div class="">
+                        <label for="name" class="col-md-4">Duration</label><span class="col-md-1">:</span>
+                        <td>{{  $personaldata->duration }}</td>
+                    </div>
+                    </div>
+          </div>
+          </div>
+</div>
+</div>
 </div>
 </div>
 @endsection

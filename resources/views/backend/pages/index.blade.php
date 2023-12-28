@@ -15,6 +15,7 @@
 @endsection
 
 @section('content')
+<div class="container ml-3">
 <div class="row">
     <h1>List Table</h1>
         <div class="col-12">
@@ -59,6 +60,7 @@
         </div>
     </div>
 </div>
+<div>
 @endsection
 
 
