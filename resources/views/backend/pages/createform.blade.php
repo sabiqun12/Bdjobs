@@ -105,7 +105,14 @@ user
                         </thead>
                         <tbody>
                             <tr>
-
+                           <td></td>
+                            <td><input class="form-control rounded-0" type="text" id="elevel" name="elevel[]"  required></td>
+                            <td><input class="form-control rounded-0" type="text" id="elevel" name="group[]" required></td>
+                            <td><input class="form-control rounded-0" type="text" id="elevel" name="board[]" required></td>
+                            <td><input class="form-control rounded-0" type="text" id="elevel" name="iname[]" required></td>
+                            <td><input class="form-control rounded-0" type="text" id="pyear" name="result[]"  required></td>
+                            <td><input class="form-control rounded-0" type="text" id="pyear" name="pyear[]"  required></td>
+                            <td><button class="btn btn-danger rounded-0" id ="deleteRow"><i class="fa fa-trash"></i></button</td>
                             </tr>
                         </tbody>
                     </table>
@@ -234,9 +241,9 @@ $(function() {
         // Table columns
         cols += '<th scrope="row">' + counter + '</th>';
         cols +=
-            '<td><input class="form-control rounded-0" type="text" id="elevel" name="elevel[]" name" required></td>';
+            '<td><input class="form-control rounded-0" type="text" id="elevel" name="elevel[]"  required></td>';
         cols +=
-            '<td><input class="form-control rounded-0" type="text" id="igroup" name="group[]"  name" required></td>';
+            '<td><input class="form-control rounded-0" type="text" id="igroup" name="group[]"  required></td>';
         cols +=
             '<td><input class="form-control rounded-0" type="text" id="board" name="board[]"   required></td>';
         cols +=

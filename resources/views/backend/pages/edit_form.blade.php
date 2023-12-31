@@ -47,19 +47,19 @@
                     <div class="form-row ">
                         <div class="form-group col-md-6">
                             <label for="first_name">First name</label>
-                            <input type="text" class="form-control" id="" name="first_name" value="{{ $personaldata->first_name}}" required>
-                        </div>
+                             <input type="text" class="form-control" id="" name="first_name" value="{{ $personaldata->first_name}}" required> 
+                        </div> 
                         <div class="form-group col-md-6">
                             <label for="last_name">Last Name</label>
-                            <input type="tel" class="form-control" name="last_name"  value="{{ $personaldata->last_name}}" required>
+                           <input type="tel" class="form-control" name="last_name"  value="{{ $personaldata->last_name}}" required> 
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="gender">Gender</label>
-                            <select class="form-control js-select" name="gender"  value="{{ $personaldata->gender}}" required>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
+                            <select class="form-control js-select" name="gender"  value="" required>
+                                <option value="{{ $personaldata->gender }}">Male</option>
+                                <option value="{{ $personaldata->gender }}">Female</option>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
@@ -105,14 +105,19 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            @foreach($education as $data=>$edu)
                                 <tr>
-                                    <td><input class="form-control rounded-0" type="text" id="elevel" name="elevel[]"  required></td>
-                                    <td><input class="form-control rounded-0" type="text" id="igroup" name="group"   required></td>
-                                    <td><input class="form-control rounded-0" type="text" id="board" name="board"   required></td>
-                                    <td><input class="form-control rounded-0" type="text" id="iname" name="iname"  required></td>
-                                    <td><input class="form-control rounded-0" type="text" id="iname" name="iname"  required></td>
+                                    <td><input class="form-control rounded-0" type="hidden" id="" name="e_id[]" value="{{ $edu->id }}" required></td>
+                                    <td><input class="form-control rounded-0" type="text" id="elevel" name="elevel[]" value="{{ $edu->Education }}" required></td>
+                                    <td><input class="form-control rounded-0" type="text" id="igroup" name="group[]"  value="{{ $edu->Group }}" required></td>
+                                    <td><input class="form-control rounded-0" type="text" id="board" name="iname[]"  value="{{ $edu->I_Name }}"  required></td>
+                                    <td><input class="form-control rounded-0" type="text" id="" name="board[]" value="{{ $edu->Board }}"  required></td>
+                                    <td><input class="form-control rounded-0" type="text" id="" name="result[]" value="{{ $edu->Result }}"  required></td>
+                                    <td><input class="form-control rounded-0" type="text" id="" name="pyear[]" value="{{ $edu->Passing_Year }}"  required></td>
+                                    <td><button class="btn btn-danger rounded-0" id ="deleteRow"><i class="fa fa-trash"></i></button</td>
 
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
 
@@ -129,7 +134,7 @@
                     <div class="row ml-5">
                         <div class="col">
                             <label for="Training Title">Training Title </label>
-                            <input type="text" class="form-control" name="t_title"  value="{{ $personaldata->t_title}}" required>
+                            <input type="text" class="form-control" name="t_title"  value="{{ $personaldata->T_title}}" required>
                         </div>
                         <div class="col ml-5">
                             <label for="Country">Country</label>
@@ -139,7 +144,7 @@
                     <div class="row mt-3 ml-5">
                         <div class="col">
                             <label for="Topics Covered">Topics Covered</label>
-                            <input type="text" class="form-control" name="t_cover"  value="{{ $personaldata->t_cover}}" required>
+                            <input type="text" class="form-control" name="t_cover"  value="{{ $personaldata->topic}}" required>
                         </div>
                         <div class="col ml-5">
                             <label for="training year">Training Year </label>
@@ -150,7 +155,7 @@
                     <div class="row mt-3 ml-5">
                         <div class="col">
                             <label for="institute">Institute</label>
-                            <input type="text" class="form-control" name="t_institute"  value="{{ $personaldata->t_institute}}" required>
+                            <input type="text" class="form-control" name="t_institute"  value="{{ $personaldata->institute}}" required>
                         </div>
                         <div class="col ml-5">
                             <label for="major">Duration </label>
@@ -240,17 +245,17 @@
                 // Table columns
                 cols += '<th scrope="row">' + counter + '</th>';
                 cols +=
-                    '<td><input class="form-control rounded-0" type="text" id="elevel" name="elevel" name" required></td>';
+                    '<td><input class="form-control rounded-0" type="text" id="elevel" name="elevel[]" name" required></td>';
                 cols +=
-                    '<td><input class="form-control rounded-0" type="text" id="igroup" name="group"  name" required></td>';
+                    '<td><input class="form-control rounded-0" type="text" id="igroup" name="group[]"  name" required></td>';
                 cols +=
-                    '<td><input class="form-control rounded-0" type="text" id="board" name="board"  required></td>';
+                    '<td><input class="form-control rounded-0" type="text" id="board" name="board[]"  required></td>';
                 cols +=
-                    '<td><input class="form-control rounded-0" type="text" id="iname" name="iname"  required></td>';
+                    '<td><input class="form-control rounded-0" type="text" id="iname" name="iname[]"  required></td>';
                 cols +=
-                    '<td><input class="form-control rounded-0" type="text" id="result" name="result"  required></td>';
+                    '<td><input class="form-control rounded-0" type="text" id="result" name="result[]"  required></td>';
                 cols +=
-                    '<td><input class="form-control rounded-0" type="text" id="pyear" name="pyear"  required></td>';
+                    '<td><input class="form-control rounded-0" type="text" id="pyear" name="pyear[]"  required></td>';
 
                 cols +=
                     '<td><button class="btn btn-danger rounded-0" id ="deleteRow"><i class="fa fa-trash"></i></button</td>';

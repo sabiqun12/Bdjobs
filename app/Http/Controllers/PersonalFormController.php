@@ -66,7 +66,13 @@ class PersonalFormController extends Controller
     public function FormEdit($id){
 
         $personaldata = PersonalForm::find($id);
-        return view('backend.pages.edit_form', compact('personaldata'));
+        // dd($personaldata);
+         $education = Education::where('Personal_ID', $id)->get();
+        // $education = Education::select('Education','Group', 'I_Name')
+        // ->where('Personal_ID', $id)->get();
+        //   dd($education);
+        return view('backend.pages.edit_form', compact('personaldata', 'education'));
+       
 
        
 
@@ -90,6 +96,7 @@ class PersonalFormController extends Controller
     public function FormUpdate(Request $request, $id){
 
         $personaldata = PersonalForm::find($id);
+        // dd($personaldata);
         $personaldata->update([
             'first_name'=> $request->first_name,
             'last_name'=> $request->last_name,
@@ -97,9 +104,45 @@ class PersonalFormController extends Controller
             'religion'=> $request->religion,
             'address' => $request->address,
             'phone' => $request->phone,
+            'T_title'=> $request->t_title,
+            'country'=> $request->country,
+            'topic'=> $request->t_cover,
+            't_year'=>$request->t_year,
+            'institute'=> $request->t_institute,
+            'duration'=> $request->duration
            
-        ]);;
-        return redirect()->route('user.data');
+        ]);
+
+        $edu= Education::where('Personal_ID', $id)->first();
+         //dd($edu);
+        foreach($request->elevel as $key=> $value)
+        {
+            // dd($request->all());
+            $edu->update([
+                'Personal_ID' => $personaldata->id, 
+                'Education'=> $request->elevel[$key],
+                'Group'=> $request->group[$key],
+                'I_Name'=> $request->iname[$key],
+                'Board'=> $request->board[$key],
+                'Result'=> $request->result[$key],
+                'Passing_Year'=> $request->pyear[$key],
+                                
+            ]);
+            //  Education::create([
+            //     'Personal_ID' => $personaldata->id, 
+            //     'Education'=> $request->elevel[$key],
+            //     'Group'=> $request->group[$key],
+            //     'I_Name'=> $request->iname[$key],
+            //     'Board'=> $request->board[$key],
+            //     'Result'=> $request->result[$key],
+            //     'Passing_Year'=> $request->pyear[$key],
+            //     'created_at'=> now(),
+            //     'updated_at'=> now()
+        
+    // ]);
+
+        }
+         return redirect()->route('user.data');
           
     } 
 }
