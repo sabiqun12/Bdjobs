@@ -113,33 +113,30 @@ class PersonalFormController extends Controller
            
         ]);
 
-        $edu= Education::where('Personal_ID', $id)->first();
-         //dd($edu);
+      
+        // dd($request->all());
         foreach($request->elevel as $key=> $value)
         {
-            // dd($request->all());
-            $edu->update([
-                'Personal_ID' => $personaldata->id, 
-                'Education'=> $request->elevel[$key],
-                'Group'=> $request->group[$key],
-                'I_Name'=> $request->iname[$key],
-                'Board'=> $request->board[$key],
-                'Result'=> $request->result[$key],
-                'Passing_Year'=> $request->pyear[$key],
-                                
-            ]);
-            //  Education::create([
-            //     'Personal_ID' => $personaldata->id, 
-            //     'Education'=> $request->elevel[$key],
-            //     'Group'=> $request->group[$key],
-            //     'I_Name'=> $request->iname[$key],
-            //     'Board'=> $request->board[$key],
-            //     'Result'=> $request->result[$key],
-            //     'Passing_Year'=> $request->pyear[$key],
-            //     'created_at'=> now(),
-            //     'updated_at'=> now()
-        
-    // ]);
+            if(isset($request->e_id[$key])){
+                $edu= Education::where('id', $request->e_id[$key])->first();
+
+            }
+            else{
+                // dd($request->elevel);
+                $edu= new Education();
+            }
+          
+            //  dd($request->all());
+            $edu->Personal_ID=$personaldata->id;
+            $edu->Education=$request->elevel[$key];
+            $edu->Group=$request->group[$key];
+            $edu->I_Name= $request->iname[$key];
+            $edu->Board=$request->board[$key];
+            $edu->Result=$request->result[$key];
+            $edu->Passing_Year=$request->pyear[$key];
+            $edu->save();
+
+
 
         }
          return redirect()->route('user.data');
