@@ -37,10 +37,11 @@ class PersonalFormController extends Controller
             'duration'=> $request->duration
         ]);
         // dd($personaldata->id); 
-        //  dd($request->elevel);
+        //  dd($request->elevel[0]);
         foreach($request->elevel as $key=> $value)
         {
-            // dd($request->pyear[$key]);
+            //  dd($request->pyear[$key]);
+            //  dd($request->all());
              Education::create([
                 'Personal_ID' => $personaldata->id, 
                 'Education'=> $request->elevel[$key],
@@ -55,9 +56,10 @@ class PersonalFormController extends Controller
               
             ]);
 
-            return redirect()->route('user.data');
+           
             // echo 123;
         }
+        return redirect()->route('user.data');
         // dd(991923);
         
 
@@ -117,16 +119,18 @@ class PersonalFormController extends Controller
         // dd($request->all());
         foreach($request->elevel as $key=> $value)
         {
+
+            // dd($request->e_id);
             if(isset($request->e_id[$key])){
                 $edu= Education::where('id', $request->e_id[$key])->first();
 
             }
             else{
-                // dd($request->elevel);
+                //  dd($request->elevel);
                 $edu= new Education();
             }
           
-            //  dd($request->all());
+            //    dd($request->all());
             $edu->Personal_ID=$personaldata->id;
             $edu->Education=$request->elevel[$key];
             $edu->Group=$request->group[$key];
@@ -139,7 +143,11 @@ class PersonalFormController extends Controller
 
 
         }
-         return redirect()->route('user.data');
-          
+        
+        return redirect()->route('user.data');    
     } 
+
+    public function delete(){
+
+    }
 }

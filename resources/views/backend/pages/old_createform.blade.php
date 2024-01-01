@@ -87,53 +87,42 @@ user
             <h3>Education</h3>
             <section>
 
-            <div class="panel-body margin">
-            <div class="table-responsive">
-                <table id="tableID" class="table table-striped table-bordered table-condensed" style="margin-bottom: 0">
-                    <thead>
-                        <tr>
-                            <th style="text-align: center">Level of Education</th>
-                            <th style="text-align: center">Concentration/Major/Group</th>
-                            <th style="text-align: center">Institute Name</th>
-                            <th style="text-align: center">Board</th>
-                            <th style="text-align: center">Result</th>
-                            <th style="text-align: center">Passing Year</th>
-                            <th style="text-align: center">Action</th>
-                        </tr>
-                    </thead>
+                <div class="mt-2">
+                    <a class="btn btn-primary btn-sm pull-right" id="insertRow" href="#"><i class="fa fa-plus"></i></a>
 
-                    <tbody>
-                        <tr id="template_row_id" data-number="0">
-                             <td>
-                                <input class="form-control rounded-0" type="text" id="elevel" name="elevel[]" required>
-                            </td>
-                            <td>
-                                <input class="form-control rounded-0" type="text" id="" name="group[]" required>
-                            </td> 
-                            <td>
-                                <input class="form-control rounded-0" type="text" id="" name="iname[]" required>
-                            </td>
-                            <td>
-                                <input class="form-control rounded-0" type="text" id="" name="board[]" required>
-                            </td> 
-                            <td>
-                                <input class="form-control rounded-0" type="text" id="" name="result[]" required>
-                            </td>
-                            <td>
-                                <input class="form-control rounded-0" type="text" id="" name="pyear[]" required>
-                            </td> 
-                            <td class="text-center">
-                                <a class="btn btn-sm btn-primary addTableRows"
-                                    onclick="addTableRows('tableID', 'template_row_id');">
-                                    <i class="fa fa-plus"></i></a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Level of Education</th>
+                                <th scope="col">Concentration/Major/Group</th>
+                                <th scope="col">Institute Name</th>
+                                <th scope="col">Board</th>
+                                <th scope="col">Result</th>
+                                <th scope="col">Passing Year</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                           <td></td>
+                            <td><input class="form-control rounded-0" type="text" id="elevel" name="elevel[]"  required></td>
+                            <td><input class="form-control rounded-0" type="text" id="elevel" name="group[]" required></td>
+                            <td><input class="form-control rounded-0" type="text" id="elevel" name="board[]" required></td>
+                            <td><input class="form-control rounded-0" type="text" id="elevel" name="iname[]" required></td>
+                            <td><input class="form-control rounded-0" type="text" id="pyear" name="result[]"  required></td>
+                            <td><input class="form-control rounded-0" type="text" id="pyear" name="pyear[]"  required></td>
+                            <td><button class="btn btn-danger rounded-0" id ="deleteRow"><i class="fa fa-trash"></i></button</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-                  
+
+                    <!-- Add rows button-->
+                    <!-- <a class="btn btn-primary rounded-0 btn-block" id="insertRow" href="#">Add new row</a> -->
+
+                    {{-- </div><a style="font-size: 8pt; text-decoration: none" target="_blank"
+                    href="http://frontendfreecode.com"></a> --}}
 
             </section>
             <h3>Certification</h3>
@@ -236,70 +225,58 @@ form.children("div").steps({
 
 
 // add row js
+$(function() {
 
-function addTableRows(tableID, template_row_id) {
-        // Copy the template row (first row) of table and reset the ID and Styling
-        var new_row = document.getElementById(template_row_id).cloneNode(true);
-        new_row.id = "";
-        new_row.style.display = "";
-        var current_total_row = "";
+    // Start counting from the third row
+    var counter = 1;
 
-       
-        var final_total_row = current_total_row + 1;
+    $("#insertRow").on("click", function(event) {
+        event.preventDefault();
 
-        // Generate an ID of the new Row, set the row id and append the new row into table
-        var last_row_number = $('#' + tableID).find('tbody tr').last().attr('data-number');
-        if (last_row_number != '' && typeof last_row_number !== "undefined") {
-            last_row_number = parseInt(last_row_number) + 1;
-        } else {
-            last_row_number = Math.floor(Math.random() * 101);
-        }
+        var newRow = $("<tr>");
+        var cols = '';
 
-        var new_row_id = 'rowCount' + tableID + last_row_number;
-        new_row.id = new_row_id;
-        $("#" + tableID).append(new_row);
-       
+        // Table columns
 
-        // Convert the add button into remove button of the new row
-        $("#" + tableID).find('#' + new_row_id).find('.addTableRows').removeClass('btn-primary').addClass('btn-danger')
-            .attr('onclick', 'removeTableRow("' + tableID + '","' + new_row_id + '")');
-        // Icon change of the remove button of the new row
-        $("#" + tableID).find('#' + new_row_id).find('.addTableRows > .fa').removeClass('fa-plus').addClass('fa-times');
-        // data-number attribute update of the new row
-        $('#' + tableID).find('tbody tr').last().attr('data-number', last_row_number);
+        // Table columns
+        cols += '<th scrope="row">' + counter + '</th>';
+        cols +=
+            '<td><input class="form-control rounded-0" type="text" id="elevel" name="elevel[]"  required></td>';
+        cols +=
+            '<td><input class="form-control rounded-0" type="text" id="igroup" name="group[]"  required></td>';
+        cols +=
+            '<td><input class="form-control rounded-0" type="text" id="board" name="board[]"   required></td>';
+        cols +=
+            '<td><input class="form-control rounded-0" type="text" id="iname" name="iname[]"  required></td>';
+        cols +=
+            '<td><input class="form-control rounded-0" type="text" id="result" name="result[]"  required></td>';
+        cols +=
+            '<td><input class="form-control rounded-0" type="text" id="pyear" name="pyear[]"  required></td>';
 
-        // Get all input box elements from the new row, reset the value, and change the name of input box
-        var all_input_box = $("#" + tableID).find('#' + new_row_id).find('input');
-        all_input_box.val(''); // value reset
-        for (var i = 0; i < all_input_box.length; i++) {
-            var name_of_input_box = all_input_box[i].name;
-            var id_of_input_box = all_input_box[i].id;
-            var updated_name_of_input_box = name_of_input_box.replace('[0]', '[' + current_total_row + ']');
-            var updated_id_of_input_box = id_of_input_box.replace('0', +current_total_row);
-            all_input_box[i].name = updated_name_of_input_box;
-            all_input_box[i].id = updated_id_of_input_box;
-        }
-  ///remove 
+        cols +=
+            '<td><button class="btn btn-danger rounded-0" id ="deleteRow"><i class="fa fa-trash"></i></button</td>';
 
 
-    } // end of addTableRowForIRC() function
-    function removeTableRow(tableID, removeNum) {
-        $('#' + tableID).find('#' + removeNum).remove();
-        $('#other_product_info_table').find('#rowCountother_product_info_table' + removeNum.charAt(removeNum.length - 1)).remove();
-        let current_total_row = $('#' + tableID).find('tbody tr').length;
-        if (current_total_row <= 3) {
-            //const tableFooter = document.getElementById('autoFooter');
-            const tableFooter = document.querySelector('#' + tableID + ' #autoFooter');
-            if (tableFooter) {
-                tableFooter.remove();
-            }
-        }
-    }
+        // Insert the columns inside a row
+        newRow.append(cols);
 
+        // Insert the row inside a table
+        $("table").append(newRow);
+
+        // Increase counter after each row insertion
+        counter++;
+    });
+
+    // Remove row when delete btn is clicked
+    $("table").on("click", "#deleteRow", function(event) {
+        $(this).closest("tr").remove();
+        counter -= 1
+    });
+});
 
 
 $("#mobile_code").intlTelInput({
-    initialCountry: "BD",
+    initialCountry: "in",
     separateDialCode: true,
     // utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.4/js/utils.js"
 });
