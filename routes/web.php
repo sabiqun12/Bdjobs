@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserFormController;
 use App\Http\Controllers\PersonalFormController;
+use App\Http\Controllers\DropdownController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +63,11 @@ Route::middleware(['guest'])->group(function(){
     });
 
 });
+
+//test route for dropdown
+
+Route::get('/thana', [DropdownController::class, 'dropdownpage'])->name('thana');
+Route::get('/users/thana', [DropdownController::class, 'thana']);
 
 
 
