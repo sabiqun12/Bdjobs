@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserFormController;
 use App\Http\Controllers\PersonalFormController;
 use App\Http\Controllers\DropdownController;
+use App\Http\Controllers\HomevController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,13 +32,9 @@ Route::post('/signup', [UserController::class, 'SignupStore'])->name('signup.sto
 Route::get('/userlogin', [UserController::class, 'Login'])->name('loginpage');
 Route::post('/userlogin', [UserController::class, 'LoginStore'])->name('login.store');
 
-//userform
-// Route::get('/form', [UserFormController::class, 'UserForm'])->name('user.form');
-// Route::post('/form', [UserFormController::class, 'UserStore'])->name('user.store');
-// Route::get('/edit', [UserFormController::class, 'UserEdit'])->name('user.edit');
-// Route::get('/form', [UserFormController::class, 'Formpage'])->name('user.form');
+
 Route::get('/master', [UserFormController::class, 'page'])->name('user.page');
-// Route::get('/data', [UserFormController::class, 'UserData'])->name('user.page');
+
 //personal data form
 Route::get('/form', [PersonalFormController::class, 'FormData'])->name('user.form');
 Route::post('/form', [PersonalFormController::class, 'PersonalDataStore'])->name('user.form');
@@ -45,6 +42,11 @@ Route::get('/formdata', [PersonalFormController::class, 'index'])->name('user.da
 Route::get('/edit/{id}', [PersonalFormController::class, 'FormEdit'])->name('user.edit');
 Route::put('/update/{id}', [PersonalFormController::class, 'FormUpdate'])->name('user.update');
 Route::get('/view/{id}', [PersonalFormController::class, 'FormView'])->name('user.view');
+//  Route::get('/form', [PersonalFormController::class, 'District']);
+Route::get('/users/thana', [PersonalFormController::class, 'thana']);
+Route::get('/formview', [HomevController::class, 'Formpage'])->name('formview');
+Route::post('/datastore', [HomevController::class, 'Formpage'])->name('datastore');
+
 
 
 
@@ -64,10 +66,10 @@ Route::middleware(['guest'])->group(function(){
 
 });
 
-//test route for dropdown
 
-Route::get('/thana', [DropdownController::class, 'dropdownpage'])->name('thana');
-Route::get('/users/thana', [DropdownController::class, 'thana']);
+//test route for dropdown
+// Route::get('/thana', [DropdownController::class, 'dropdownpage'])->name('thana');
+// Route::get('/users/thana', [DropdownController::class, 'thana']);
 
 
 

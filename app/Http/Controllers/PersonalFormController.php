@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PersonalForm;
+use App\Models\Area_Info;
 use App\Models\Education;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,9 @@ class PersonalFormController extends Controller
     }
 
     public function FormData(){
-        return view('backend.pages.createform');
+        $dis = Area_Info::where('area_type', 2)->orderBy('area_nm', 'ASC')->pluck('area_nm', 'area_id')->toArray();
+        return view('backend.pages.createform', compact('dis'));
+       
     }
 
     public function PersonalDataStore(Request $request){
@@ -28,6 +31,8 @@ class PersonalFormController extends Controller
             'gender'=> $request->gender,
             'religion'=> $request->religion,
             'address' => $request->address,
+            'district' => $request->district,
+            'thana' => $request->thana,
             'phone' => $request->phone,
             'T_title'=> $request->t_title,
             'country'=> $request->country,
@@ -36,6 +41,7 @@ class PersonalFormController extends Controller
             'institute'=> $request->t_institute,
             'duration'=> $request->duration
         ]);
+        // dd($request->all());
         // dd($personaldata->id); 
         //  dd($request->elevel[0]);
         foreach($request->elevel as $key=> $value)
@@ -73,7 +79,9 @@ class PersonalFormController extends Controller
         // $education = Education::select('Education','Group', 'I_Name')
         // ->where('Personal_ID', $id)->get();
         //   dd($education);
-        return view('backend.pages.edit_form', compact('personaldata', 'education'));
+        $dis = Area_Info::where('area_type', 2)->orderBy('area_nm', 'ASC')->pluck('area_nm', 'area_id')->toArray();
+     
+        return view('backend.pages.edit_form', compact('personaldata', 'education', 'dis'));
        
 
        
@@ -105,6 +113,8 @@ class PersonalFormController extends Controller
             'gender'=> $request->gender,
             'religion'=> $request->religion,
             'address' => $request->address,
+            'district' => $request->district,
+            'thana' => $request->thana,
             'phone' => $request->phone,
             'T_title'=> $request->t_title,
             'country'=> $request->country,
@@ -150,4 +160,25 @@ class PersonalFormController extends Controller
     public function delete(){
 
     }
+
+    // public function District(){
+
+    //     $dis = Area_Info::where('area_type', 2)->orderBy('area_nm', 'ASC')->pluck('area_nm', 'area_id')->toArray();
+    //     return view('backend.pages.createform', compact('dis'));
+    
+    //    }
+
+       public function thana(Request $req){
+
+        $district_id = $req->get('districtId');
+        $thana = Area_Info::where('pare_id', $district_id)->orderBy('area_nm', 'ASC')->pluck('area_nm', 'area_id')->toArray();
+        $data = ['responseCode' => 1, 'data' => $thana];
+        return response()->json($data);
+        return view('backend.pages.createform', compact('data'));
+    }
+
+    public function taskview(){
+
+        return view('backend.pages.testform');
+       } 
 }

@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('gender');
             $table->string('religion');
             $table->string('address');
+            $table->string('district');
+            $table->string('thana');
             $table->string('phone');
             $table->string('T_title');
             $table->string('country');
