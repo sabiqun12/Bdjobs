@@ -151,29 +151,37 @@ user
                             <tbody>
                                 <tr id="template_row_id" data-number="0">
                                     <td>
-                                        <input class="form-control rounded-0" type="text" id="elevel" name="elevel[]"
-                                            required>
+{{--                                        <input class="form-control rounded-0" type="text" id="elevel" name="elevel[]"--}}
+{{--                                            required>--}}
+                                        {!! Form::text('elevel[]', null, ['class' => 'form-control rounded-0', 'id' => 'elevel', 'required' => 'required']) !!}
                                     </td>
                                     <td>
-                                        <input class="form-control rounded-0" type="text" id="" name="group[]" required>
+{{--                                        <input class="form-control rounded-0" type="text" id="" name="group[]" required>--}}
+                                        {!! Form::text('group[]', null, ['class' => 'form-control rounded-0', 'required' => 'required']) !!}
+
                                     </td>
                                     <td>
-                                        <input class="form-control rounded-0" type="text" id="" name="iname[]" required>
+{{--                                        <input class="form-control rounded-0" type="text" id="" name="iname[]" required>--}}
+                                        {!! Form::text('iname[]', null, ['class' => 'form-control rounded-0', 'required' => 'required']) !!}
                                     </td>
                                     <td>
-                                        <input class="form-control rounded-0" type="text" id="" name="board[]" required>
+{{--                                        <input class="form-control rounded-0" type="text" id="" name="board[]" required>--}}
+                                        {!! Form::text('board[]', null, ['class' => 'form-control rounded-0', 'required' => 'required']) !!}
                                     </td>
                                     <td>
-                                        <input class="form-control rounded-0" type="text" id="" name="result[]"
-                                            required>
+{{--                                        <input class="form-control rounded-0" type="text" id="" name="result[]" required>--}}
+                                        {!! Form::text('result[]', null, ['class' => 'form-control rounded-0', 'required' => 'required']) !!}
                                     </td>
                                     <td>
-                                        <input class="form-control rounded-0" type="text" id="" name="pyear[]" required>
+{{--                                        <input class="form-control rounded-0" type="text" id="" name="pyear[]" required>--}}
+                                        {!! Form::text('pyear[]', null, ['class' => 'form-control rounded-0', 'required' => 'required']) !!}
                                     </td>
                                     <td class="text-center">
-                                        <a class="btn btn-sm btn-primary addTableRows"
-                                            onclick="addTableRows('tableID', 'template_row_id');">
-                                            <i class="fa fa-plus"></i></a>
+{{--                                        <a class="btn btn-sm btn-primary addTableRows"--}}
+{{--                                            onclick="addTableRows('tableID', 'template_row_id');">--}}
+{{--                                            <i class="fa fa-plus"></i></a>--}}
+                                        {!! Form::button('<i class="fa fa-plus"></i>', ['class' => 'btn btn-sm btn-primary addTableRows', 'onclick' => "addTableRows('tableID', 'template_row_id')"]) !!}
+
                                     </td>
                                 </tr>
                             </tbody>

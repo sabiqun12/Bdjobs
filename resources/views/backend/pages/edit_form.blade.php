@@ -167,33 +167,42 @@ user
                                             value="{{ $edu->id }}" required>
                                     </td> -->
                                     <td>
-                                        <input class="form-control rounded-0" type="text" id="elevel" name="elevel[]"
-                                            value="{{ $edu->Education }}" required>
+{{--                                        <input class="form-control rounded-0" type="text" id="elevel" name="elevel[]"--}}
+{{--                                            value="{{ $edu->Education }}" required>--}}
+                                        {!! Form::text('elevel[]', $edu->Education, ['class' => 'form-control rounded-0', 'id' => 'elevel', 'required' => 'required']) !!}
+
                                     </td>
                                     <td>
-                                        <input class="form-control rounded-0" type="text" id="" name="group[]"
-                                            value="{{ $edu->Group }}" required>
+{{--                                        <input class="form-control rounded-0" type="text" id="" name="group[]"--}}
+{{--                                            value="{{ $edu->Group }}" required>--}}
+                                        {!! Form::text('group[]', $edu->Group, ['class' => 'form-control rounded-0', 'id' => '', 'required' => 'required']) !!}
+
                                     </td>
                                     <td>
-                                        <input class="form-control rounded-0" type="text" id="" name="iname[]"
-                                            value="{{ $edu->I_Name }}" required>
+{{--                                        <input class="form-control rounded-0" type="text" id="" name="iname[]"--}}
+{{--                                            value="{{ $edu->I_Name }}" required>--}}
+                                        {!! Form::text('iname[]', $edu->I_Name, ['class' => 'form-control rounded-0', 'id' => '', 'required' => 'required']) !!}
                                     </td>
                                     <td>
-                                        <input class="form-control rounded-0" type="text" id="" name="board[]"
-                                            value="{{ $edu->Board }}" required>
+{{--                                        <input class="form-control rounded-0" type="text" id="" name="board[]"--}}
+{{--                                            value="{{ $edu->Board }}" required>--}}
+                                        {!! Form::text('board[]', $edu->Board, ['class' => 'form-control rounded-0', 'id' => '', 'required' => 'required']) !!}
                                     </td>
                                     <td>
-                                        <input class="form-control rounded-0" type="text" id="" name="result[]"
-                                            value="{{ $edu->Result }}" required>
+{{--                                        <input class="form-control rounded-0" type="text" id="" name="result[]"--}}
+{{--                                            value="{{ $edu->Result }}" required>--}}
+                                        {!! Form::text('result[]', $edu->Result, ['class' => 'form-control rounded-0', 'id' => '', 'required' => 'required']) !!}
                                     </td>
                                     <td>
-                                        <input class="form-control rounded-0" type="text" id="" name="pyear[]"
-                                            value="{{ $edu->Passing_Year }}" required>
+{{--                                        <input class="form-control rounded-0" type="text" id="" name="pyear[]"--}}
+{{--                                            value="{{ $edu->Passing_Year }}" required>--}}
+                                        {!! Form::text('pyear[]', $edu->Passing_Year, ['class' => 'form-control rounded-0', 'id' => '', 'required' => 'required']) !!}
                                     </td>
                                     <td class="text-center">
-                                        <a class="btn btn-sm btn-primary addTableRows"
-                                            onclick="addTableRows('tableID', 'template_row_id');">
-                                            <i class="fa fa-plus"></i></a>
+{{--                                        <a class="btn btn-sm btn-primary addTableRows"--}}
+{{--                                            onclick="addTableRows('tableID', 'template_row_id');">--}}
+{{--                                            <i class="fa fa-plus"></i></a>--}}
+                                        {!! Form::button('<i class="fa fa-plus"></i>', ['class' => 'btn btn-sm btn-primary addTableRows', 'onclick' => "addTableRows('tableID', 'template_row_id')"]) !!}
                                     </td>
                                 </tr>
                                 @endforeach
