@@ -6,6 +6,7 @@ use App\Http\Controllers\UserFormController;
 use App\Http\Controllers\PersonalFormController;
 use App\Http\Controllers\DropdownController;
 use App\Http\Controllers\HomevController;
+use App\Http\Controllers\AutocompleteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +71,12 @@ Route::middleware(['guest'])->group(function(){
 //test route for dropdown
 // Route::get('/thana', [DropdownController::class, 'dropdownpage'])->name('thana');
 // Route::get('/users/thana', [DropdownController::class, 'thana']);
+
+// Route::get('/autobox', [AutocompleteController::class, 'index'])->name('autobox');
+// Route::post('/autobox/fetch', [AutocompleteController::class,'fetch'])->name('autobox.fetch');
+
+//  Route::get('/autoname', [AutocompleteController::class, 'FormData'])->name('autoname');
+Route::get('/autoname/fetch', [AutocompleteController::class,'fetch'])->name('autoname.fetch');
 
 
 

@@ -28,7 +28,7 @@ class UserController extends Controller
     ];
 
     // login attempt if success then redirect home
-    if(Auth::attempt($credentials)){
+    if(Auth::attempt($credentials, $request->filled('terms'))){
         $request->session()->regenerate();
         return redirect()->route('loginpage');
     }

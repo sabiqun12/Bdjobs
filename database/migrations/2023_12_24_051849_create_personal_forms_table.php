@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('address');
             $table->string('district');
             $table->string('thana');
-            $table->string('phone');
+            $table->string('phone')->unique();
             $table->string('T_title');
             $table->string('country');
             $table->string('topic');

@@ -37,202 +37,213 @@ user
 @endsection
 
 @section('content')
-<div class="container">
-{{--    <form id="contact" action="{{ route('user.form')}}" method="POST">--}}
-{{--    @csrf--}}
-        {!! Form::open(['route' => 'datastore', "id" => "contact"], ) !!}
-        {!! Form::token() !!}
+<!-- <div class="container">  <form id="contact" action="{{ route('user.form')}}" method="POST"> -->
+<!-- @csrf -->
+{!! Form::open(['route' => 'user.form', "id" => "contact"], ) !!}
+{!! Form::token() !!}
 
-        <div>
-            <h3>Personal Information</h3>
-            <section>
-                <div class="form-row ">
-                    <div class="form-group col-md-6">
-                        {!! Form::label("first_name", "First name") !!}
-                        {!! Form::text("first_name", old('first_name'), ['class' => 'form-control',
-                        'placeholder' => 'First Name', 'required' => true]) !!}
-{{--                        <label for="first_name">First name</label>--}}
-{{--                        <input type="text" class="form-control" id="" name="first_name" required>--}}
-                    </div>
-                    <div class="form-group col-md-6">
-                        {!! Form::label("last_name", " Last name") !!}
-                        {!! Form::text("last_name", old('last_name'), ['class' => 'form-control',
-                         'placeholder' => 'Last name', 'required' => true]) !!}
-{{--                        <label for="last_name">Last Name</label>--}}
-{{--                        <input type="text" class="form-control" name="last_name" required>--}}
-                    </div>
+<div>
+    <h3>Personal Information</h3>
+    <section>
+        <div class="form-row ">
+            <div class="form-group col-md-6">
+                {!! Form::label("first_name", "First name") !!}
+                {!! Form::text("first_name", old('first_name'), ['id' => 'first_name', 'class' => 'form-control',
+                'placeholder' => 'First Name', 'required' => true]) !!}
+                <div id="nameList">
                 </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-{{--                        <label for="gender">Gender</label>--}}
-{{--                        <select class="form-control js-select" name="gender" required>--}}
-{{--                            <option>Select</option>--}}
-{{--                            <option>Male</option>--}}
-{{--                            <option>Female</option>--}}
-{{--                        </select>--}}
-                        {!! Form::label('gender', 'Gender') !!}
-                        {!! Form::select('gender', ['' => 'Select', 'Male' => 'Male', 'Female' => 'Female'], null,
-                        ['class' => 'form-control js-select', 'required' => true]) !!}
-                    </div>
-                    <div class="form-group col-md-6">
-{{--                        <label for="Religion">Religion</label>--}}
-{{--                        <select class="form-control js-select" name="religion" required>--}}
-{{--                            <option>Islam</option>--}}
-{{--                            <option>Hindu</option>--}}
-{{--                            <option>Christan</option>--}}
-{{--                        </select>--}}
-                        {!! Form::label('religion', 'Religion') !!}
-                        {!! Form::select('religion', ['' => 'Select', 'Islam' => 'Islam', 'Hindu' => 'Hindu', 'Christian' => 'Christian'], null,
-                        ['class' => 'form-control js-select', 'required' => 'required']) !!}
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        {!! Form::label("address", " Address ") !!}
-                        {!! Form::text("address", old('address'), ['class' => 'form-control',
-                         'placeholder' => 'Address', 'required' => true]) !!}
-{{--                        <label for="address">Address</label>--}}
-{{--                        <input type="text" class="form-control" id="user_add" name="address" required>--}}
-                    </div>
-                    <div class="form-group col-md-6">
-                        {!! Form::label("phone", " Phone ") !!}
-                        {!! Form::text("phone", old('phone'), ['class' => 'form-control', 'id' => 'mobile_code',
-                         'placeholder' => 'Phone', 'required' => true]) !!}
-{{--                        <label for="phone">Phone</label>--}}
-{{--                        <input type="tel" class="form-control" id="mobile_code" name="phone" required>--}}
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        {!! Form::label('district', 'Select District') !!}
-                        {!! Form::select('district', $dis, null, ['id' => 'district', 'class' => 'form-control', 'onchange' => "getThanaByDistrictId('district', this.value, 'thana');"]) !!}
-
-                        {{--                        <label for="district">Select District</label>--}}
-{{--                        <select name="district" id="district" class="form-control"--}}
-{{--                            onchange="getThanaByDistrictId('district', this.value, 'thana');">--}}
-{{--                            <!-- <option value="Kurigram">Select</option> -->--}}
-{{--                            @foreach( $dis as $key => $district)--}}
-{{--                            <option value="{{ $key }}">{{ $district }}</option>--}}
-{{--                            @endforeach--}}
-{{--                        </select>--}}
-                    </div>
-                    <div class="form-group col-md-6">
-                        {!! Form::label('thana', 'Select Thana') !!}
-                        {!! Form::select('thana', ['' => 'Select'], null, ['id' => 'thana', 'class' => 'form-control']) !!}
-{{--                        <label for="thana">Select Thana</label>--}}
-{{--                        <select name="thana" id="thana" class="form-control">--}}
-{{--                            <option value="">Select</option>--}}
-{{--                        </select>--}}
-                    </div>
-                </div>
-
-            </section>
-            <h3>Education</h3>
-            <section>
-
-                <div class="panel-body margin">
-                    <div class="table-responsive">
-                        <table id="tableID" class="table table-striped table-bordered table-condensed"
-                            style="margin-bottom: 0">
-                            <thead>
-                                <tr>
-                                    <th style="text-align: center">Level of Education</th>
-                                    <th style="text-align: center">Concentration/Major/Group</th>
-                                    <th style="text-align: center">Institute Name</th>
-                                    <th style="text-align: center">Board</th>
-                                    <th style="text-align: center">Result</th>
-                                    <th style="text-align: center">Passing Year</th>
-                                    <th style="text-align: center">Action</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <tr id="template_row_id" data-number="0">
-                                    <td>
-{{--                                        <input class="form-control rounded-0" type="text" id="elevel" name="elevel[]"--}}
-{{--                                            required>--}}
-                                        {!! Form::text('elevel[]', null, ['class' => 'form-control rounded-0', 'id' => 'elevel', 'required' => 'required']) !!}
-                                    </td>
-                                    <td>
-{{--                                        <input class="form-control rounded-0" type="text" id="" name="group[]" required>--}}
-                                        {!! Form::text('group[]', null, ['class' => 'form-control rounded-0', 'required' => 'required']) !!}
-
-                                    </td>
-                                    <td>
-{{--                                        <input class="form-control rounded-0" type="text" id="" name="iname[]" required>--}}
-                                        {!! Form::text('iname[]', null, ['class' => 'form-control rounded-0', 'required' => 'required']) !!}
-                                    </td>
-                                    <td>
-{{--                                        <input class="form-control rounded-0" type="text" id="" name="board[]" required>--}}
-                                        {!! Form::text('board[]', null, ['class' => 'form-control rounded-0', 'required' => 'required']) !!}
-                                    </td>
-                                    <td>
-{{--                                        <input class="form-control rounded-0" type="text" id="" name="result[]" required>--}}
-                                        {!! Form::text('result[]', null, ['class' => 'form-control rounded-0', 'required' => 'required']) !!}
-                                    </td>
-                                    <td>
-{{--                                        <input class="form-control rounded-0" type="text" id="" name="pyear[]" required>--}}
-                                        {!! Form::text('pyear[]', null, ['class' => 'form-control rounded-0', 'required' => 'required']) !!}
-                                    </td>
-                                    <td class="text-center">
-{{--                                        <a class="btn btn-sm btn-primary addTableRows"--}}
-{{--                                            onclick="addTableRows('tableID', 'template_row_id');">--}}
-{{--                                            <i class="fa fa-plus"></i></a>--}}
-                                        {!! Form::button('<i class="fa fa-plus"></i>', ['class' => 'btn btn-sm btn-primary addTableRows', 'onclick' => "addTableRows('tableID', 'template_row_id')"]) !!}
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-
-            </section>
-            <h3>Certification</h3>
-            <section>
-                <div class="row ml-5">
-                    <div class="col">
-                        {!! Form::label('t_title', 'Training Title') !!}
-                        {!! Form::text('t_title', null, ['class' => 'form-control', 'required' => 'required']) !!}
-                    </div>
-                    <div class="col ml-5">
-                        {!! Form::label('country', 'Country') !!}
-                        {!! Form::text('country', null, ['class' => 'form-control', 'required' => 'required']) !!}
-                    </div>
-                </div>
-
-                <div class="row mt-3 ml-5">
-                    <div class="col">
-                        {!! Form::label('t_cover', 'Topics Covered') !!}
-                        {!! Form::text('t_cover', null, ['class' => 'form-control', 'required' => 'required']) !!}
-                    </div>
-                    <div class="col ml-5">
-                        {!! Form::label('t_year', 'Training Year') !!}
-                        {!! Form::text('t_year', null, ['class' => 'form-control', 'required' => 'required']) !!}
-                    </div>
-                </div>
-
-                <div class="row mt-3 ml-5">
-                    <div class="col">
-                        {!! Form::label('t_institute', 'Institute') !!}
-                        {!! Form::text('t_institute', null, ['class' => 'form-control', 'required' => 'required']) !!}
-                    </div>
-                    <div class="col ml-5">
-                        {!! Form::label('duration', 'Duration') !!}
-                        {!! Form::text('duration', null, ['class' => 'form-control', 'required' => 'required']) !!}
-                    </div>
-                </div>
-
-                <div class="form-group mt-3 mx-5">
-                    {!! Form::submit('Save', ['class' => 'btn btn-success text-center']) !!}
-                </div>
-
-            </section>
+                <!-- 
+                        <label for="first_name">First name</label>
+                        <input type="text" class="form-control" id="" name="first_name" required> -->
+            </div>
+            <div class="form-group col-md-6">
+                {!! Form::label("last_name", " Last name") !!}
+                {!! Form::text("last_name", old('last_name'), ['class' => 'form-control',
+                'placeholder' => 'Last name', 'required' => true]) !!}
+                {{--                        <label for="last_name">Last Name</label>--}}
+                {{--                        <input type="text" class="form-control" name="last_name" required>--}}
+            </div>
         </div>
- {!! Form::close() !!}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                {{--                        <label for="gender">Gender</label>--}}
+                {{--                        <select class="form-control js-select" name="gender" required>--}}
+                {{--                            <option>Select</option>--}}
+                {{--                            <option>Male</option>--}}
+                {{--                            <option>Female</option>--}}
+                {{--                        </select>--}}
+                {!! Form::label('gender', 'Gender') !!}
+                {!! Form::select('gender', ['' => 'Select', 'Male' => 'Male', 'Female' => 'Female'], null,
+                ['class' => 'form-control js-select', 'required' => true]) !!}
+            </div>
+            <div class="form-group col-md-6">
+                <!-- <label for="Religion">Religion</label>
+                <select class="form-control js-select" name="religion" required>--}}
+                    <option>Islam</option>
+                    <option>Hindu</option>
+                    <option>Christan</option>
+                </select> -->
+                {!! Form::label('religion', 'Religion') !!}
+                {!! Form::select('religion', ['' => 'Select', 'Islam' => 'Islam', 'Hindu' => 'Hindu', 'Christian' =>
+                'Christian'], null,
+                ['class' => 'form-control js-select', 'required' => 'required']) !!}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                {!! Form::label("address", " Address ") !!}
+                {!! Form::text("address", old('address'), ['class' => 'form-control',
+                'placeholder' => 'Address', 'required' => 'required']) !!}
+                {{--                        <label for="address">Address</label>--}}
+                {{--                        <input type="text" class="form-control" id="user_add" name="address" required>--}}
+            </div>
+            <div class="form-group col-md-6">
+                {!! Form::label("phone", " Phone ") !!}
+                {!! Form::text("phone", old('phone'), ['class' => 'form-control', 'id' => 'mobile_code',
+                'placeholder' => 'Phone', 'required' => 'required']) !!}
+
+                {{--                        <label for="phone">Phone</label>--}}
+                {{--                        <input type="tel" class="form-control" id="mobile_code" name="phone" required>--}}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                {!! Form::label('district', 'Select District') !!}
+                {!! Form::select('district', $dis, null, ['id' => 'district', 'class' => 'form-control', 'onchange' =>
+                "getThanaByDistrictId('district', this.value, 'thana');"]) !!}
+
+                {{--                        <label for="district">Select District</label>--}}
+                {{--                        <select name="district" id="district" class="form-control"--}}
+                {{--                            onchange="getThanaByDistrictId('district', this.value, 'thana');">--}}
+                {{--                            <!-- <option value="Kurigram">Select</option> -->--}}
+                {{--                            @foreach( $dis as $key => $district)--}}
+                {{--                            <option value="{{ $key }}">{{ $district }}</option>--}}
+                {{--                            @endforeach--}}
+                {{--                        </select>--}}
+            </div>
+            <div class="form-group col-md-6">
+                {!! Form::label('thana', 'Select Thana') !!}
+                {!! Form::select('thana', ['' => 'Select'], null, ['id' => 'thana', 'class' => 'form-control']) !!}
+                {{--                        <label for="thana">Select Thana</label>--}}
+                {{--                        <select name="thana" id="thana" class="form-control">--}}
+                {{--                            <option value="">Select</option>--}}
+                {{--                        </select>--}}
+            </div>
+        </div>
+
+    </section>
+    <h3>Education</h3>
+    <section>
+
+        <div class="panel-body margin">
+            <div class="table-responsive">
+                <table id="tableID" class="table table-striped table-bordered table-condensed" style="margin-bottom: 0">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center">Level of Education</th>
+                            <th style="text-align: center">Concentration/Major/Group</th>
+                            <th style="text-align: center">Institute Name</th>
+                            <th style="text-align: center">Board</th>
+                            <th style="text-align: center">Result</th>
+                            <th style="text-align: center">Passing Year</th>
+                            <th style="text-align: center">Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr id="template_row_id" data-number="0">
+                            <td>
+                                {{--                                        <input class="form-control rounded-0" type="text" id="elevel" name="elevel[]"--}}
+                                {{--                                            required>--}}
+                                {!! Form::text('elevel[]', null, ['class' => 'form-control rounded-0', 'id' => 'elevel',
+                                'required' => 'required']) !!}
+                            </td>
+                            <td>
+                                {{--                                        <input class="form-control rounded-0" type="text" id="" name="group[]" required>--}}
+                                {!! Form::text('group[]', null, ['class' => 'form-control rounded-0', 'required' =>
+                                'required']) !!}
+
+                            </td>
+                            <td>
+                                {{--                                        <input class="form-control rounded-0" type="text" id="" name="iname[]" required>--}}
+                                {!! Form::text('iname[]', null, ['class' => 'form-control rounded-0', 'required' =>
+                                'required']) !!}
+                            </td>
+                            <td>
+                                {{--                                        <input class="form-control rounded-0" type="text" id="" name="board[]" required>--}}
+                                {!! Form::text('board[]', null, ['class' => 'form-control rounded-0', 'required' =>
+                                'required']) !!}
+                            </td>
+                            <td>
+                                {{--                                        <input class="form-control rounded-0" type="text" id="" name="result[]" required>--}}
+                                {!! Form::text('result[]', null, ['class' => 'form-control rounded-0', 'required' =>
+                                'required']) !!}
+                            </td>
+                            <td>
+                                {{--                                        <input class="form-control rounded-0" type="text" id="" name="pyear[]" required>--}}
+                                {!! Form::text('pyear[]', null, ['class' => 'form-control rounded-0', 'required' =>
+                                'required']) !!}
+                            </td>
+                            <td class="text-center">
+                                {{--                                        <a class="btn btn-sm btn-primary addTableRows"--}}
+                                {{--                                            onclick="addTableRows('tableID', 'template_row_id');">--}}
+                                {{--                                            <i class="fa fa-plus"></i></a>--}}
+                                {!! Form::button('<i class="fa fa-plus"></i>', ['class' => 'btn btn-sm btn-primary
+                                addTableRows', 'onclick' => "addTableRows('tableID', 'template_row_id')"]) !!}
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </section>
+    <h3>Certification</h3>
+    <section>
+        <div class="row ml-5">
+            <div class="col">
+                {!! Form::label('t_title', 'Training Title') !!}
+                {!! Form::text('t_title', null, ['class' => 'form-control', 'required' => 'required']) !!}
+            </div>
+            <div class="col ml-5">
+                {!! Form::label('country', 'Country') !!}
+                {!! Form::text('country', null, ['class' => 'form-control', 'required' => 'required']) !!}
+            </div>
+        </div>
+
+        <div class="row mt-3 ml-5">
+            <div class="col">
+                {!! Form::label('t_cover', 'Topics Covered') !!}
+                {!! Form::text('t_cover', null, ['class' => 'form-control', 'required' => 'required']) !!}
+            </div>
+            <div class="col ml-5">
+                {!! Form::label('t_year', 'Training Year') !!}
+                {!! Form::text('t_year', null, ['class' => 'form-control', 'required' => 'required']) !!}
+            </div>
+        </div>
+
+        <div class="row mt-3 ml-5">
+            <div class="col">
+                {!! Form::label('t_institute', 'Institute') !!}
+                {!! Form::text('t_institute', null, ['class' => 'form-control', 'required' => 'required']) !!}
+            </div>
+            <div class="col ml-5">
+                {!! Form::label('duration', 'Duration') !!}
+                {!! Form::text('duration', null, ['class' => 'form-control', 'required' => 'required']) !!}
+            </div>
+        </div>
+
+        <div class="form-group mt-3 mx-5">
+            {!! Form::submit('Save', ['class' => 'btn btn-success text-center']) !!}
+        </div>
+
+    </section>
+</div>
+{!! Form::close() !!}
 </div>
 
 
@@ -345,7 +356,7 @@ function removeTableRow(tableID, removeNum) {
 }
 
 
-// country code plugin code
+// mobile country code plugin 
 $("#mobile_code").intlTelInput({
     initialCountry: "BD",
     separateDialCode: true,
@@ -356,6 +367,35 @@ $("#mobile_code").intlTelInput({
 //     $(document).ready(function() {
 //     $('.form-control js-select').select2();
 // });
+
+//autocomplete plugin for name
+$(document).ready(function() {
+
+    $('#first_name').keyup(function() {
+        var query = $(this).val();
+        if (query != '') {
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+                url: "{{ route('autoname.fetch') }}",
+                method: "GET",
+                data: {
+                    query: query,
+                    _token: _token
+                },
+                success: function(data) {
+                    $('#nameList').fadeIn();
+                    $('#nameList').html(data);
+                }
+            });
+        }
+    });
+
+    $(document).on('click', 'li', function() {
+        $('#first_name').val($(this).text());
+        $('#nameList').fadeOut();
+    });
+
+});
 </script>
 <script>
 function getThanaByDistrictId(district_id, district_value, thana_div, old_data) {
@@ -378,10 +418,10 @@ function getThanaByDistrictId(district_id, district_value, thana_div, old_data) 
             beforeSend: function() {
                 $("#" + district_id).after('<span class="loading_data">Loading...</span>');
             },
-            success: function (response) {
+            success: function(response) {
                 var option = '<option value="">Select Thana</option>';
                 if (response.responseCode == 1) {
-                    $.each(response.data, function (id, value) {
+                    $.each(response.data, function(id, value) {
                         if (id.trim() == old_data) {
                             option += '<option value="' + id + '" selected>' + value + '</option>';
                         } else {

@@ -22,7 +22,7 @@ class PersonalFormController extends Controller
     }
 
     public function PersonalDataStore(Request $request){
-        // dd($request->all());
+        //  dd($request->all());
        
 
         $personaldata = PersonalForm::create([
@@ -41,7 +41,7 @@ class PersonalFormController extends Controller
             'institute'=> $request->t_institute,
             'duration'=> $request->duration
         ]);
-        // dd($request->all());
+        //  dd($request->all());
         // dd($personaldata->id); 
         //  dd($request->elevel[0]);
         foreach($request->elevel as $key=> $value)
@@ -65,10 +65,41 @@ class PersonalFormController extends Controller
            
             // echo 123;
         }
+        $request->validate([
+            // Other validation rules...
+            'phone' => [
+                'required',
+                'string',
+                'unique:personal_forms,phone', 
+            
+            ],
+        ]);
         return redirect()->route('user.data');
         // dd(991923);
         
 
+    }
+
+
+    
+    //autocomplete 
+    public function fetch(Request $request)
+    {
+        if($request->get('query'))
+        {
+            $query = $request->get('query');
+            $data = PersonalForm::select('first_name')
+                ->where('first_name', 'LIKE', "%{$query}%")
+                ->get();
+            $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
+            foreach($data as $row)
+            {
+                $output .= '
+         <li><a href="#">'.$row->first_name.'</a></li>';
+            }
+            $output .= '</ul>';
+            echo $output;
+        }
     }
 
     public function FormEdit($id){
