@@ -5,13 +5,18 @@ user
 
 @section('pagewise_style')
 <link rel="stylesheet" href="{{ asset('assets/backend') }}/css/jquery.steps.css">
+
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<!--autocomplete -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
 <script src="{{ asset('assets/backend') }}/plugins/jquery.steps/jquery.steps.js"></script>
 <link rel="stylesheet" type="text/css"
     href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/css/intlTelInput.css" />
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -39,7 +44,7 @@ user
 @section('content')
 <!-- <div class="container">  <form id="contact" action="{{ route('user.form')}}" method="POST"> -->
 <!-- @csrf -->
-{!! Form::open(['route' => 'user.form', "id" => "contact"], ) !!}
+{!! Form::open(['route' => 'user.formdata', "id" => "contact"], ) !!}
 {!! Form::token() !!}
 
 <div>
@@ -251,16 +256,11 @@ user
 @endsection
 
 @section('pagewise_script')
-<!-- for dropdown dependency ajax jquery cdn -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
-<!-- end dropdown dependency ajax jquery cdn -->
+
 
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<!-- for dropdown dependency ajax jquery cdn -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
-<!-- end dropdown dependency ajax jquery cdn -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput-jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
@@ -369,32 +369,29 @@ $("#mobile_code").intlTelInput({
 // });
 
 //autocomplete plugin for name
-$(document).ready(function() {
 
-    $('#first_name').keyup(function() {
-        var query = $(this).val();
-        if (query != '') {
-            var _token = $('input[name="_token"]').val();
-            $.ajax({
-                url: "{{ route('autoname.fetch') }}",
-                method: "GET",
-                data: {
-                    query: query,
-                    _token: _token
-                },
-                success: function(data) {
-                    $('#nameList').fadeIn();
-                    $('#nameList').html(data);
-                }
-            });
-        }
-    });
-
-    $(document).on('click', 'li', function() {
-        $('#first_name').val($(this).text());
-        $('#nameList').fadeOut();
-    });
-
+$("#first_name").autocomplete({
+    source: function(request, response) {
+        $.ajax({
+            url: "/autosearch",
+            data: {
+                term: request.term
+            },
+            dataType: "json",
+            success: function(data) {
+                // console.log(data);
+                var resp = $.map(data, function(obj) {
+                    return obj.first_name;
+                });
+                response(resp);
+            }
+        });
+    },
+    minLength: 2,
+    select: function(event, ui) {
+        $('#first_name').val(ui.item.value);
+        return false;
+    }
 });
 </script>
 <script>

@@ -1,14 +1,21 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Registration Page (v2)</title>
-  @include('backend.layouts.inc.style')
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AdminLTE 3 | Registration Page (v2)</title>
+    @include('backend.layouts.inc.style')
 
 </head>
+
 <body class="hold-transition login-page">
+    <div class="container ">
+        @section('content')
+        @if(session()->has('status'))
+        <div class="alert alert-success text-center" id="flash-message">{{ session()->get('status') }}</div>
+        @endif
+    </div>
     <div class="login-box">
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
@@ -24,9 +31,9 @@
                         <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
                             placeholder="Email">
                         @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
                         @enderror
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -38,9 +45,9 @@
                         <input type="password" name="password"
                             class="form-control @error('password') is-invalid @enderror" placeholder="Password">
                         @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
                         @enderror
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -78,11 +85,17 @@
         <!-- /.card -->
     </div>
 
-<!-- jQuery -->
-<script src="{{ asset('assets/backend') }}/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="{{ asset('assets/backend') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('assets/backend') }}/dist/js/adminlte.min.js"></script>
+    <!-- jQuery -->
+    <script src="{{ asset('assets/backend') }}/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ asset('assets/backend') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ asset('assets/backend') }}/dist/js/adminlte.min.js"></script>
+    <script>
+        setTimeout(function() {
+        $('#flash-message').fadeOut('fast');
+    }, 3000);
+    </script>
 </body>
+
 </html>

@@ -32,22 +32,11 @@ Route::post('/signup', [UserController::class, 'SignupStore'])->name('signup.sto
 
 Route::get('/userlogin', [UserController::class, 'Login'])->name('loginpage');
 Route::post('/userlogin', [UserController::class, 'LoginStore'])->name('login.store');
+Route::get('/userlogout', [UserController::class, 'userlogout'])->name('user.logout');
 
 
-Route::get('/master', [UserFormController::class, 'page'])->name('user.page');
 
 //personal data form
-Route::get('/form', [PersonalFormController::class, 'FormData'])->name('user.form');
-Route::post('/form', [PersonalFormController::class, 'PersonalDataStore'])->name('user.form');
-Route::get('/formdata', [PersonalFormController::class, 'index'])->name('user.data');
-Route::get('/edit/{id}', [PersonalFormController::class, 'FormEdit'])->name('user.edit');
-Route::put('/update/{id}', [PersonalFormController::class, 'FormUpdate'])->name('user.update');
-Route::get('/view/{id}', [PersonalFormController::class, 'FormView'])->name('user.view');
-//  Route::get('/form', [PersonalFormController::class, 'District']);
-Route::get('/users/thana', [PersonalFormController::class, 'thana']);
-Route::get('/formview', [HomevController::class, 'Formpage'])->name('formview');
-Route::post('/datastore', [HomevController::class, 'Formpage'])->name('datastore');
-
 
 
 
@@ -57,6 +46,18 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/dashboard', function () {
         return view('backend.pages.dashboard');
     });
+    
+Route::get('/form', [PersonalFormController::class, 'FormData'])->name('user.form');
+Route::post('/form', [PersonalFormController::class, 'PersonalDataStore'])->name('user.formdata');
+Route::get('/formdata', [PersonalFormController::class, 'index'])->name('user.data');
+Route::get('/edit/{id}', [PersonalFormController::class, 'FormEdit'])->name('user.edit');
+Route::put('/update/{id}', [PersonalFormController::class, 'FormUpdate'])->name('user.update');
+Route::get('/view/{id}', [PersonalFormController::class, 'FormView'])->name('user.view');
+//  Route::get('/form', [PersonalFormController::class, 'District']);
+Route::get('/users/thana', [PersonalFormController::class, 'thana']);
+Route::get('/formview', [HomevController::class, 'Formpage'])->name('formview');
+Route::post('/datastore', [HomevController::class, 'Formpage'])->name('datastore');
+
 
 });
 
@@ -68,15 +69,11 @@ Route::middleware(['guest'])->group(function(){
 });
 
 
-//test route for dropdown
-// Route::get('/thana', [DropdownController::class, 'dropdownpage'])->name('thana');
-// Route::get('/users/thana', [DropdownController::class, 'thana']);
+Route::get('/search', [HomevController::class, 'viewpage'])->name('search');
+Route::post('/search', [HomevController::class, 'postpage'])->name('searchdata');
+// Route::get('/autocomplete', [HomevController::class, 'autocomplete']);
+ Route::get('/autosearch', [PersonalFormController::class, 'autosearch']);
 
-// Route::get('/autobox', [AutocompleteController::class, 'index'])->name('autobox');
-// Route::post('/autobox/fetch', [AutocompleteController::class,'fetch'])->name('autobox.fetch');
-
-//  Route::get('/autoname', [AutocompleteController::class, 'FormData'])->name('autoname');
-Route::get('/autoname/fetch', [AutocompleteController::class,'fetch'])->name('autoname.fetch');
 
 
 

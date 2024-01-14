@@ -14,6 +14,7 @@
 @endsection
 
 @section('content')
+
 <div class="container-fluid">
           <div class="row d-flex justify-content-start">
                 <div class="col-md-12">

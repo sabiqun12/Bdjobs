@@ -15,6 +15,9 @@
 @endsection
 
 @section('content')
+@if(session()->has('status'))
+    <div class="alert alert-success text-center" id="flash-message">{{ session()->get('status') }}</div>
+@endif 
 <div class="container ml-3">
 <div class="row">
     <h1>List Table</h1>
@@ -77,6 +80,9 @@
 
 });
 
+setTimeout(function() {
+        $('#flash-message').fadeOut('fast');
+    }, 3000);
 
 </script>
 

@@ -61,20 +61,20 @@ class PersonalFormController extends Controller
 
               
             ]);
-
+            // dd($request->all());
            
             // echo 123;
         }
-        $request->validate([
-            // Other validation rules...
-            'phone' => [
-                'required',
-                'string',
-                'unique:personal_forms,phone', 
+        // $request->validate([
+        //     // Other validation rules...
+        //     'phone' => [
+        //         'required',
+        //         'string',
+        //         'unique:personal_forms,phone', 
             
-            ],
-        ]);
-        return redirect()->route('user.data');
+        //     ],
+        // ]);
+        return redirect()->route('user.data')->with('status', 'Post created successfully');
         // dd(991923);
         
 
@@ -83,30 +83,88 @@ class PersonalFormController extends Controller
 
     
     //autocomplete 
-    public function fetch(Request $request)
-    {
-        if($request->get('query'))
-        {
-            $query = $request->get('query');
-            $data = PersonalForm::select('first_name')
-                ->where('first_name', 'LIKE', "%{$query}%")
+    // public function fetch(Request $request)
+    // {
+    //     if($request->get('query'))
+    //     {
+    //         $query = $request->get('query');
+    //         $data = PersonalForm::select('first_name')
+    //             ->where('first_name', 'LIKE', "%{$query}%")
+    //             ->get();
+    //         $output = '<div class="dropdown-menu form-control" style="display:block; position:relative">';
+    //         foreach($data as $row)
+    //         {
+    //             $output .= '
+    //      <li><a href="#">'.$row->first_name.'</a></li>';
+    //         }
+    //         $output .= '</div>';
+    //         echo $output;
+    //     }
+    // }
+
+// public function fetch(Request $request)
+// {
+//     if ($request->has('query')) {
+//         $query = $request->input('query');
+//         $data = PersonalForm::where('first_name', 'LIKE', "%{$query}%")
+//             ->select('first_name')
+//             ->get();
+
+//         $output = [];
+//         foreach ($data as $row) {
+//             $output[] = $row->first_name;
+//         }
+
+//         return response()->json($output);
+//     }
+//     return view('backend.pages.createform', compact('output'));
+// }
+
+
+// public function autocomplete(Request $request)
+// {
+//     // $query = $request->input('query');
+
+//     // $data = PersonalForm::select('first_name')
+//     //     ->where('first_name', 'LIKE', "%{$query}%")
+//     //     ->get();
+
+//     // return response()->json($data);
+
+//     if($request->ajax()){
+//         $data = PersonalForm::where('first_name', 'LIKE', $request->first_name.'%')->get();
+//         $output = '';
+//         if(count($data) >0 ){
+//             $output = '<ul class="list-group" style="display:block; position:releative;z-index:1">';
+            
+//             foreach($data as $row){
+//                 $output .='<li class="list-group-item">'.$row->first_name.'</li>';
+//             }
+//             $output .= '</ul>';
+                
+//         } 
+//         else{
+//             $output .='<li class="list-group-item">No Data Found</li>';
+//         }
+//         return $output;       
+    
+//     }
+// }
+
+    public function autosearch(Request $request){
+                $res = PersonalForm::select("first_name")
+                ->where("first_name","LIKE","%{$request->term}%")
                 ->get();
-            $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
-            foreach($data as $row)
-            {
-                $output .= '
-         <li><a href="#">'.$row->first_name.'</a></li>';
-            }
-            $output .= '</ul>';
-            echo $output;
+
+            return response()->json($res);
         }
-    }
+
 
     public function FormEdit($id){
 
         $personaldata = PersonalForm::find($id);
         // dd($personaldata);
-         $education = Education::where('Personal_ID', $id)->get();
+        $education = Education::where('Personal_ID', $id)->get();
         // $education = Education::select('Education','Group', 'I_Name')
         // ->where('Personal_ID', $id)->get();
         //   dd($education);
@@ -120,7 +178,7 @@ class PersonalFormController extends Controller
     } 
 
     public function FormView($id){
-        // dd(123);
+        //  dd(123);
         $personaldata = PersonalForm::find($id);
         $educationdata = Education::where('Personal_ID', $id)->get();
 
@@ -185,7 +243,7 @@ class PersonalFormController extends Controller
 
         }
         
-        return redirect()->route('user.data');    
+        return redirect()->route('user.data')->with('status', 'Post  Update successfully');    
     } 
 
     public function delete(){
@@ -208,8 +266,9 @@ class PersonalFormController extends Controller
         return view('backend.pages.createform', compact('data'));
     }
 
-    public function taskview(){
 
-        return view('backend.pages.testform');
-       } 
+    public function searchauto(){
+        return view('backend.pages.searchauto');
+    }
+
 }

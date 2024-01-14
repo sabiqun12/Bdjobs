@@ -30,7 +30,7 @@ class UserController extends Controller
     // login attempt if success then redirect home
     if(Auth::attempt($credentials, $request->filled('terms'))){
         $request->session()->regenerate();
-        return redirect()->route('loginpage');
+        return redirect()->route('loginpage')->with('status', 'User registered successfully');
     }
 
      }
@@ -53,7 +53,7 @@ class UserController extends Controller
     //login attempt if success then redirect dashboard
     if(Auth::attempt($credentials, $request->filled('remember'))){
         $request->session()->regenerate();
-        return redirect()->intended('dashboard');
+        return redirect()->intended('dashboard')->with('status', 'User login successfully');
     }
 
       // return error message
@@ -62,6 +62,11 @@ class UserController extends Controller
     ])->onlyInput('email');
 
 
+     }
+
+     public function userlogout(){
+        Auth::logout();
+        return redirect()->route('loginpage');
      }
 
 

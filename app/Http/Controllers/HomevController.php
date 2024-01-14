@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\PersonalForm;
+
+
 
 class HomevController extends Controller
 {
@@ -38,4 +41,21 @@ class HomevController extends Controller
 //        }
 //    }
 
+
+public function viewpage(){
+    return view('backend.pages.searchauto');
+}
+public function postpage(){
+    return view('backend.pages.postpage');
+}
+
+public function autocomplete(Request $request)
+{
+    // dd($request->all());
+    $res = PersonalForm::select("first_name")
+            ->where("first_name","LIKE","%{$request->term}%")
+            ->get();
+
+    return response()->json($res);
+}
 }

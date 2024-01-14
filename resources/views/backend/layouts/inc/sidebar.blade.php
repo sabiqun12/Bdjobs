@@ -57,6 +57,12 @@
                   <p>DataList</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{ route('user.logout') }}" class="nav-link active">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Logout</p>
+                </a>
+              </li>
             </ul>
         </ul>
       </nav>
