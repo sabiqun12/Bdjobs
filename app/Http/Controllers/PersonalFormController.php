@@ -74,7 +74,7 @@ class PersonalFormController extends Controller
             
         //     ],
         // ]);
-        return redirect()->route('user.data')->with('status', 'Post created successfully');
+        return redirect()->route('user.data')->with('status', 'Form created successfully');
         // dd(991923);
         
 
@@ -182,7 +182,8 @@ class PersonalFormController extends Controller
         $personaldata = PersonalForm::find($id);
         $educationdata = Education::where('Personal_ID', $id)->get();
 
-        //  dd($educationdata, $personaldata);
+         // dd($educationdata, $personaldata);
+        //  dd($educationdata);
         return view('backend.pages.data_view', compact('personaldata', 'educationdata'));
 
       
@@ -229,7 +230,7 @@ class PersonalFormController extends Controller
                 $edu= new Education();
             }
           
-            //    dd($request->all());
+                // dd($request->all());
             $edu->Personal_ID=$personaldata->id;
             $edu->Education=$request->elevel[$key];
             $edu->Group=$request->group[$key];
@@ -243,7 +244,7 @@ class PersonalFormController extends Controller
 
         }
         
-        return redirect()->route('user.data')->with('status', 'Post  Update successfully');    
+        return redirect()->route('user.data')->with('status', 'Form  Update successfully');    
     } 
 
     public function delete(){

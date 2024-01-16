@@ -248,7 +248,7 @@ user
                 </div>
 
                 <div class="form-group mt-3 mx-5">
-                    {!! Form::submit('Save', ['class' => 'btn btn-success text-center']) !!}
+                    {!! Form::submit('Update', ['class' => 'btn btn-success text-center']) !!}
                 </div>
             </section>
         </div>

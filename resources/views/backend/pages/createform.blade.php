@@ -51,17 +51,15 @@ user
     <h3>Personal Information</h3>
     <section>
         <div class="form-row ">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 col-sm-4">
                 {!! Form::label("first_name", "First name") !!}
                 {!! Form::text("first_name", old('first_name'), ['id' => 'first_name', 'class' => 'form-control',
                 'placeholder' => 'First Name', 'required' => true]) !!}
-                <div id="nameList">
-                </div>
                 <!-- 
                         <label for="first_name">First name</label>
                         <input type="text" class="form-control" id="" name="first_name" required> -->
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 col-sm-4">
                 {!! Form::label("last_name", " Last name") !!}
                 {!! Form::text("last_name", old('last_name'), ['class' => 'form-control',
                 'placeholder' => 'Last name', 'required' => true]) !!}
@@ -70,18 +68,19 @@ user
             </div>
         </div>
         <div class="form-row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 col-sm-4">
                 {{--                        <label for="gender">Gender</label>--}}
                 {{--                        <select class="form-control js-select" name="gender" required>--}}
                 {{--                            <option>Select</option>--}}
                 {{--                            <option>Male</option>--}}
                 {{--                            <option>Female</option>--}}
                 {{--                        </select>--}}
+
                 {!! Form::label('gender', 'Gender') !!}
                 {!! Form::select('gender', ['' => 'Select', 'Male' => 'Male', 'Female' => 'Female'], null,
                 ['class' => 'form-control js-select', 'required' => true]) !!}
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 col-sm-4">
                 <!-- <label for="Religion">Religion</label>
                 <select class="form-control js-select" name="religion" required>--}}
                     <option>Islam</option>
@@ -96,14 +95,14 @@ user
         </div>
 
         <div class="form-row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 col-sm-4">
                 {!! Form::label("address", " Address ") !!}
                 {!! Form::text("address", old('address'), ['class' => 'form-control',
                 'placeholder' => 'Address', 'required' => 'required']) !!}
                 {{--                        <label for="address">Address</label>--}}
                 {{--                        <input type="text" class="form-control" id="user_add" name="address" required>--}}
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 col-sm-4">
                 {!! Form::label("phone", " Phone ") !!}
                 {!! Form::text("phone", old('phone'), ['class' => 'form-control', 'id' => 'mobile_code',
                 'placeholder' => 'Phone', 'required' => 'required']) !!}
@@ -114,7 +113,7 @@ user
         </div>
 
         <div class="form-row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 col-sm-4">
                 {!! Form::label('district', 'Select District') !!}
                 {!! Form::select('district', $dis, null, ['id' => 'district', 'class' => 'form-control', 'onchange' =>
                 "getThanaByDistrictId('district', this.value, 'thana');"]) !!}
@@ -128,7 +127,7 @@ user
                 {{--                            @endforeach--}}
                 {{--                        </select>--}}
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-6 col-sm-4">
                 {!! Form::label('thana', 'Select Thana') !!}
                 {!! Form::select('thana', ['' => 'Select'], null, ['id' => 'thana', 'class' => 'form-control']) !!}
                 {{--                        <label for="thana">Select Thana</label>--}}
@@ -195,6 +194,7 @@ user
                                 {{--                                        <a class="btn btn-sm btn-primary addTableRows"--}}
                                 {{--                                            onclick="addTableRows('tableID', 'template_row_id');">--}}
                                 {{--                                            <i class="fa fa-plus"></i></a>--}}
+                                
                                 {!! Form::button('<i class="fa fa-plus"></i>', ['class' => 'btn btn-sm btn-primary
                                 addTableRows', 'onclick' => "addTableRows('tableID', 'template_row_id')"]) !!}
 
@@ -242,9 +242,12 @@ user
             </div>
         </div>
 
-        <div class="form-group mt-3 mx-5">
+        <div class="row mt-3 ml-5">
+        <div class="col">
             {!! Form::submit('Save', ['class' => 'btn btn-success text-center']) !!}
         </div>
+        </div>
+       
 
     </section>
 </div>
@@ -360,7 +363,7 @@ function removeTableRow(tableID, removeNum) {
 $("#mobile_code").intlTelInput({
     initialCountry: "BD",
     separateDialCode: true,
-    // utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.4/js/utils.js"
+    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.4/js/utils.js"
 });
 
 //SELECT2.JS

@@ -37,15 +37,13 @@
                   </div><!-- /.col -->
                 </div><!-- /.row -->
             </div>
-            {{-- @yield('content_header') --}}
+
             <div class="content">
                 @yield('content')
             </div>
         </div>
         @include('backend.layouts.inc.footer')
     </div>
-
-    {{-- @include('backend.layouts.inc.script') --}}
 
     @yield('pagewise_script')
 </body>

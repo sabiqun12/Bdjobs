@@ -27,6 +27,7 @@
 
                 <form action="{{ route('login.store') }}" method="post">
                     @csrf
+                    
                     <div class="input-group mb-3">
                         <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
                             placeholder="Email">
@@ -35,6 +36,7 @@
                             <strong>{{ $message }}</strong>
                         </span>
                         @enderror
+                
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -58,7 +60,7 @@
                     <div class="row">
                         <div class="col-8">
                             <div class="icheck-primary">
-                                <input type="checkbox" id="remember" name="remember" required>
+                                <input type="checkbox" id="remember" name="remember">
                                 <label for="remember">
                                     Remember Me
                                 </label>
@@ -73,9 +75,9 @@
                 </form>
                 <!-- /.social-auth-links -->
 
-                <p class="mb-1">
+                <!-- <p class="mb-1">
                     <a href="forgot-password.html">I forgot my password</a>
-                </p>
+                </p> -->
                 <p class="mb-0">
                     <a href="{{ route('signuppage') }}" class="text-center">Register a new membership</a>
                 </p>
